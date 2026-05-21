@@ -1,0 +1,26 @@
+{
+  "name": "lark-currency-field-shortcut",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lark Base Field Shortcut for date-aware currency conversion.",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "start": "block-basekit-cli start:field",
+    "preview": "block-basekit-cli preview",
+    "pack": "block-basekit-cli pack:field",
+    "build": "tsc -p tsconfig.build.json",
+    "server": "node dist/backend/server.js",
+    "test": "npm run build && node --test dist/tests"
+  },
+  "engines": {
+    "node": ">=14.16.0"
+  },
+  "dependencies": {
+    "@lark-opdev/block-basekit-server-api": "^1.0.6"
+  },
+  "devDependencies": {
+    "@lark-opdev/block-basekit-cli": "^1.0.5",
+    "@types/node": "^20.14.0",
+    "typescript": "^5.4.5"
+  }
+}

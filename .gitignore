@@ -1,0 +1,6 @@
+node_modules/
+dist/
+output/
+.env
+npm-debug.log*
+Field Shortcut Development Guide (FaaS Version).docx

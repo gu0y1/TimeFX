@@ -19,7 +19,7 @@ Run the backend locally:
 npm run build
 $env:LARK_EXPECTED_PACK_ID="replit_replace_with_real_pack_id"
 $env:LARK_BASE_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----`n...`n-----END PUBLIC KEY-----"
-$env:CONVERSION_BACKEND_URL="http://127.0.0.1:8787/api/convert"
+$env:CONVERSION_BACKEND_URL="https://tools.openmia.ai/TimeFX/api/convert"
 npm run server
 ```
 
@@ -94,7 +94,7 @@ The backend uses strict-date behavior. If the rate provider returns a different 
 | Variable | Default | Purpose |
 | --- | --- | --- |
 | `PORT` | `8787` | Backend HTTP port. |
-| `CONVERSION_BACKEND_URL` | `http://127.0.0.1:8787/api/convert` | FaaS backend endpoint. |
+| `CONVERSION_BACKEND_URL` | `https://tools.openmia.ai/TimeFX/api/convert` | FaaS backend endpoint. |
 | `LARK_SIGNATURE_VERIFY` | `true` | Enable Lark signature verification. |
 | `LARK_EXPECTED_PACK_ID` | empty | Required when signature verification is enabled. |
 | `LARK_BASE_PUBLIC_KEY` | built-in Base public key | Public key used to verify `context.baseSignature`. This is not an app secret or tenant token. |
@@ -115,6 +115,7 @@ npm run pack
 
 `npm run start` uses `block-basekit-cli start:field` for the Field Shortcut Debugging Assistant.
 `npm run pack` uses `block-basekit-cli pack:field` and writes a zip under `output/`.
-The local default uses `127.0.0.1` instead of `localhost` because the current BaseKit CLI package rejects the literal `localhost` during field packaging, while it accepts IPv4 loopback addresses.
 
-Before publishing, replace the local backend URL with the deployed backend URL through `CONVERSION_BACKEND_URL`, and ensure the deployed backend hostname is the one allowed by `basekit.addDomainList`.
+The production backend endpoint is `https://tools.openmia.ai/TimeFX/api/convert`. The field shortcut code derives the domain allowlist from the URL hostname only, so `basekit.addDomainList` receives `tools.openmia.ai`, not the `/TimeFX/` path.
+
+For local backend debugging, you can still override `CONVERSION_BACKEND_URL` with `http://127.0.0.1:8787/api/convert`. Use `127.0.0.1` instead of `localhost` because the current BaseKit CLI package rejects the literal `localhost` during field packaging, while it accepts IPv4 loopback addresses.

@@ -42,6 +42,7 @@ test('dateValueToIsoDate accepts an existing ISO date', () => {
 
 test('extractBackendHost strips protocol and port for addDomainList', () => {
   assert.equal(extractBackendHost('https://currency.example.com/api/convert'), 'currency.example.com');
+  assert.equal(extractBackendHost('https://tools.openmia.ai/TimeFX/api/convert'), 'tools.openmia.ai');
   assert.equal(extractBackendHost('http://localhost:8787/api/convert'), 'localhost');
   assert.equal(extractBackendHost('http://127.0.0.1:8787/api/convert'), '127.0.0.1');
 });

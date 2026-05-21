@@ -18,13 +18,13 @@
 
 - `https://api.frankfurter.dev`
 
-生产环境必须提供 HTTPS 公网域名，例如：
+生产环境提供 HTTPS 公网域名：
 
 ```text
-https://currency-api.example.com/api/convert
+https://tools.openmia.ai/TimeFX/api/convert
 ```
 
-部署完成后，需要把 Lark FaaS 侧的 `CONVERSION_BACKEND_URL` 改成这个正式地址，并重新执行字段捷径打包。
+Lark FaaS 侧的 `CONVERSION_BACKEND_URL` 使用这个正式地址，并重新执行字段捷径打包。字段捷径侧的 `addDomainList` 只允许填写 hostname，因此会放行 `tools.openmia.ai`，不要把 `/TimeFX/` 路径写进域名白名单。
 
 ## 2. 运行环境
 
@@ -272,7 +272,7 @@ curl -i -X POST https://<your-domain>/api/convert \
 
 部署同事完成后，请提供：
 
-- 正式 HTTPS endpoint，例如 `https://currency-api.example.com/api/convert`。
+- 正式 HTTPS endpoint：`https://tools.openmia.ai/TimeFX/api/convert`。
 - 正式 `LARK_EXPECTED_PACK_ID` 是否已经配置。
 - `LARK_SIGNATURE_VERIFY=true` 是否已确认。
 - `GET /health` 验收结果。
@@ -280,6 +280,6 @@ curl -i -X POST https://<your-domain>/api/convert \
 
 字段捷径侧拿到正式 endpoint 后，需要：
 
-1. 设置 `CONVERSION_BACKEND_URL=https://<your-domain>/api/convert`。
+1. 设置 `CONVERSION_BACKEND_URL=https://tools.openmia.ai/TimeFX/api/convert`。
 2. 重新执行 `npm run pack`。
 3. 上传新的字段捷径包。
